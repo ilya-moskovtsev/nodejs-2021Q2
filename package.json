@@ -4,9 +4,10 @@
   "description": "NodeJS Global Mentoring Program [2021Q2 RU GM]",
   "main": "index.js",
   "scripts": {
+    "build": "babel lib -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "task1": "start nodemon homework_1/task_1.js",
-    "task2": "start nodemon homework_1/task_2.js"
+    "task1": "nodemon --exec babel-node lib/homework_1/task_1.js",
+    "task2": "nodemon --exec babel-node lib/homework_1/task_2.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,10 @@
   },
   "homepage": "https://github.com/ilya-moskovtsev/nodejs-2021Q2#readme",
   "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.8",
+    "@babel/node": "^7.13.0",
+    "@babel/preset-env": "^7.13.9",
     "nodemon": "^2.0.7"
   },
   "dependencies": {
