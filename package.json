@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-2021q2",
+  "version": "1.0.0",
+  "description": "NodeJS Global Mentoring Program [2021Q2 RU GM]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "task1": "start nodemon task1.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilya-moskovtsev/nodejs-2021Q2.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ilya-moskovtsev/nodejs-2021Q2/issues"
+  },
+  "homepage": "https://github.com/ilya-moskovtsev/nodejs-2021Q2#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
