@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "task1": "start nodemon homework_1/task_1.js"
+    "task1": "start nodemon homework_1/task_1.js",
+    "task2": "start nodemon homework_1/task_2.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/ilya-moskovtsev/nodejs-2021Q2#readme",
   "devDependencies": {
     "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
