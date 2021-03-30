@@ -12,15 +12,11 @@
       "type": "integer",
       "minimum": 4,
       "maximum": 130
-    },
-    "isDeleted": {
-      "type": "boolean"
     }
   },
   "required": [
     "login",
     "password",
-    "age",
-    "isDeleted"
+    "age"
   ]
 }
