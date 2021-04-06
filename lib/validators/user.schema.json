@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "login": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string",
+      "pattern": "^(?=.*?\\d)(?=.*?[a-zA-Z])[a-zA-Z\\d]+$"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 4,
+      "maximum": 130
+    }
+  },
+  "required": [
+    "login",
+    "password",
+    "age"
+  ]
+}
