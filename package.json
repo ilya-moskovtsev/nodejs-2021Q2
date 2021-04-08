@@ -4,10 +4,10 @@
   "description": "NodeJS Global Mentoring Program [2021Q2 RU GM]",
   "main": "index.js",
   "scripts": {
-    "build": "babel lib -d dist",
+    "build": "babel src -d dist",
     "start": "node dist/app.js",
-    "dev": "nodemon --exec babel-node lib/app.js",
-    "lint": "esw -w lib",
+    "dev": "nodemon --exec babel-node src/app.js",
+    "lint": "esw -w src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "task1": "start nodemon task1.js"
   },
