@@ -1,5 +1,6 @@
 import express from 'express';
 import { userRoutes } from './routes/user';
+import { groupRoutes } from './routes/group';
 import sequelize from './loaders/database';
 
 const app = express();
@@ -8,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.disable('x-powered-by');
 app.use(express.json());
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/groups', groupRoutes);
 app.use((err, req, res, next) => {
     if (res.headersSent) return next(err);
 
