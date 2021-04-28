@@ -43,10 +43,12 @@ export default class GroupService {
     async addUsersToGroup(group, userIds) {
         console.log(`Adding ${userIds.length} users to group ${group.id}`);
         try {
-            const promises = userIds.map(user_id => User.findByPk(user_id));
-            const users = await Promise.all(promises);
-            await group.addUsers(users);
-            console.log(`Added ${await group.countUsers()} users to group ${group.id} successfully`);
+            await db.sequelize.transaction(async transaction => {
+                const promises = userIds.map(user_id => User.findByPk(user_id, { transaction }));
+                const users = await Promise.all(promises);
+                await group.addUsers(users, { transaction });
+                console.log(`Added ${await group.countUsers({ transaction })} users to group ${group.id} successfully`);
+            });
         } catch (e) {
             console.error(`Error adding users to group ${group.id}`);
         }
