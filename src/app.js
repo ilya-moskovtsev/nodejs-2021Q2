@@ -1,7 +1,7 @@
 import express from 'express';
 import { userRoutes } from './routes/user';
 import { groupRoutes } from './routes/group';
-import sequelize from './loaders/database';
+import db from './loaders/database';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,7 +20,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-sequelize
+db.sequelize
     .sync()
     .then(result => {
         console.log(result);

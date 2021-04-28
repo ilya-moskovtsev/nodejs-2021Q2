@@ -1,4 +1,6 @@
-import Group from '../models/group';
+import db from '../loaders/database';
+
+const Group = db.group;
 
 export default class GroupService {
     async findAll() {
