@@ -12,6 +12,8 @@ router.get('/', groupController.getGroups());
 
 router.post('/', groupController.create());
 
+router.post('/:group_id', groupController.addUsersToGroup());
+
 router.put('/:group_id', groupController.update());
 
 router.delete('/:group_id', groupController.delete());

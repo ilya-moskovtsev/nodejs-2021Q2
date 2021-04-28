@@ -1,6 +1,7 @@
 import db from '../loaders/database';
 
 const Group = db.group;
+const User = db.user;
 
 export default class GroupService {
     async findAll() {
@@ -36,6 +37,18 @@ export default class GroupService {
             return newgroup.id;
         } catch (e) {
             console.error('Error creating group', e);
+        }
+    }
+
+    async addUsersToGroup(group, userIds) {
+        console.log(`Adding ${userIds.length} users to group ${group.id}`);
+        try {
+            const promises = userIds.map(user_id => User.findByPk(user_id));
+            const users = await Promise.all(promises);
+            await group.addUsers(users);
+            console.log(`Added ${await group.countUsers()} users to group ${group.id} successfully`);
+        } catch (e) {
+            console.error(`Error adding users to group ${group.id}`);
         }
     }
 

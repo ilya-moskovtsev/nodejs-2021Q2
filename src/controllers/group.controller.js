@@ -35,6 +35,12 @@ export default class GroupController {
         };
     }
 
+    addUsersToGroup() {
+        return async (req, res) => {
+            res.json(await this.groupService.addUsersToGroup(req.group, req.body));
+        };
+    }
+
     update() {
         return async (req, res) => {
             res.json(await this.groupService.update(req.group, req.body));
