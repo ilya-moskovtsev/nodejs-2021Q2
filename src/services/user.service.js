@@ -18,6 +18,7 @@ export default class UserService {
             return users;
         } catch (e) {
             console.error('Error finding all users', e);
+            throw e;
         }
     }
 
@@ -32,6 +33,7 @@ export default class UserService {
             return user;
         } catch (e) {
             console.error(`Error finding user by id ${user_id}`, e);
+            throw e;
         }
     }
 
@@ -48,6 +50,7 @@ export default class UserService {
             return newUser.id;
         } catch (e) {
             console.error('Error creating user', e);
+            throw e;
         }
     }
 
@@ -62,6 +65,7 @@ export default class UserService {
             console.log(`Updated user ${target.id} successfully`);
         } catch (e) {
             console.error(`Error updating user ${target.id}`);
+            throw e;
         }
     }
 
@@ -86,6 +90,7 @@ export default class UserService {
             return users;
         } catch (e) {
             console.error('Error suggesting users', e);
+            throw e;
         }
     }
 
@@ -98,6 +103,7 @@ export default class UserService {
             console.log(`Deleted user by id ${user.id} successfully`);
         } catch (e) {
             console.error(`Error deleting user by id ${user.id}`, e);
+            throw e;
         }
     }
 }

@@ -12,6 +12,7 @@ export default class GroupService {
             return groups;
         } catch (e) {
             console.error('Error finding all groups', e);
+            throw e;
         }
     }
 
@@ -23,6 +24,7 @@ export default class GroupService {
             return group;
         } catch (e) {
             console.error(`Error finding group by id ${group_id}`, e);
+            throw e;
         }
     }
 
@@ -37,6 +39,7 @@ export default class GroupService {
             return newgroup.id;
         } catch (e) {
             console.error('Error creating group', e);
+            throw e;
         }
     }
 
@@ -51,6 +54,7 @@ export default class GroupService {
             });
         } catch (e) {
             console.error(`Error adding users to group ${group.id}`);
+            throw e;
         }
     }
 
@@ -63,6 +67,7 @@ export default class GroupService {
             console.log(`Updated group ${target.id} successfully`);
         } catch (e) {
             console.error(`Error updating group ${target.id}`);
+            throw e;
         }
     }
 
@@ -75,6 +80,7 @@ export default class GroupService {
             console.log(`Deleted group by id ${group.id} successfully`);
         } catch (e) {
             console.error(`Error deleting group by id ${group.id}`, e);
+            throw e;
         }
     }
 }

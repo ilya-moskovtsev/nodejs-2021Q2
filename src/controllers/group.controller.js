@@ -7,12 +7,16 @@ export default class GroupController {
 
     findById() {
         return async (req, res, next, group_id) => {
-            req.group = await this.groupService.findById(group_id);
-            if (req.group) {
-                return next();
-            }
+            try {
+                req.group = await this.groupService.findById(group_id);
+                if (req.group) {
+                    return next();
+                }
 
-            res.status(404).json({ message: `Group with id ${group_id} not found` });
+                res.status(404).json({ message: `Group with id ${group_id} not found` });
+            } catch (e) {
+                return next(e);
+            }
         };
     }
 
@@ -23,34 +27,54 @@ export default class GroupController {
     }
 
     getGroups() {
-        return async (req, res) => {
-            res.json(await this.groupService.findAll());
+        return async (req, res, next) => {
+            try {
+                res.json(await this.groupService.findAll());
+            } catch (e) {
+                return next(e);
+            }
         };
     }
 
     create() {
-        return async (req, res) => {
-            const id = await this.groupService.create(req.body);
-            res.json({ id });
+        return async (req, res, next) => {
+            try {
+                const id = await this.groupService.create(req.body);
+                res.json({ id });
+            } catch (e) {
+                return next(e);
+            }
         };
     }
 
     addUsersToGroup() {
-        return async (req, res) => {
-            res.json(await this.groupService.addUsersToGroup(req.group, req.body));
+        return async (req, res, next) => {
+            try {
+                res.json(await this.groupService.addUsersToGroup(req.group, req.body));
+            } catch (e) {
+                return next(e);
+            }
         };
     }
 
     update() {
-        return async (req, res) => {
-            res.json(await this.groupService.update(req.group, req.body));
+        return async (req, res, next) => {
+            try {
+                res.json(await this.groupService.update(req.group, req.body));
+            } catch (e) {
+                return next(e);
+            }
         };
     }
 
     delete() {
-        return async (req, res) => {
-            await this.groupService.delete(req.group);
-            res.status(204).end();
+        return async (req, res, next) => {
+            try {
+                await this.groupService.delete(req.group);
+                res.status(204).end();
+            } catch (e) {
+                return next(e);
+            }
         };
     }
 }

@@ -13,6 +13,8 @@ app.use(morgan('combined'));
 app.use(express.json());
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/groups', groupRoutes);
+
+// Logs all unhandled errors and returns a standard message with HTTP code 500 (Internal Server Error)
 app.use((err, req, res, next) => {
     if (res.headersSent) return next(err);
 
