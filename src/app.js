@@ -14,6 +14,12 @@ process.on('uncaughtException', async err => {
     process.exit(1);
 });
 
+process.on('unhandledRejection', async (reason, promise) => {
+    console.log('Unhandled Rejection at:', promise, 'reason:', reason);
+    await db.sequelize.close();
+    process.exit(1);
+});
+
 app.disable('x-powered-by');
 app.use(morgan('combined'));
 app.use(express.json());
