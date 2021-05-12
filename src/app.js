@@ -8,6 +8,12 @@ import db from './loaders/database';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+process.on('uncaughtException', async err => {
+    console.log(`Uncaught Exception: ${err.message}`);
+    await db.sequelize.close();
+    process.exit(1);
+});
+
 app.disable('x-powered-by');
 app.use(morgan('combined'));
 app.use(express.json());
