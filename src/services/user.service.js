@@ -1,4 +1,6 @@
-import User from '../models/user';
+import db from '../loaders/database';
+
+const User = db.user;
 
 export default class UserService {
     constructor() {
