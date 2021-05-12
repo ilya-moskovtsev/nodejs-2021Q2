@@ -17,6 +17,7 @@ export default class UserController {
 
                 res.status(404).json({ message: `User with id ${user_id} not found` });
             } catch (e) {
+                console.error(`UserController findById user_id ${user_id} ${e.message}`);
                 return next(e);
             }
         };
@@ -30,15 +31,15 @@ export default class UserController {
 
     getUsers() {
         return async (req, res, next) => {
+            const { loginSubstring, limit } = req.query;
             try {
-                const { loginSubstring, limit } = req.query;
-
                 if (loginSubstring && limit) {
                     res.json(await this.userService.getAutoSuggestUsers(loginSubstring, limit));
                 } else {
                     res.json(await this.userService.findAll());
                 }
             } catch (e) {
+                console.error(`UserController getUsers loginSubstring ${loginSubstring} limit ${limit} ${e.message}`);
                 return next(e);
             }
         };
@@ -50,6 +51,7 @@ export default class UserController {
                 const id = await this.userService.create(req.body);
                 res.json({ id });
             } catch (e) {
+                console.error(`UserController create user ${req.body} ${e.message}`);
                 return next(e);
             }
         };
@@ -60,6 +62,7 @@ export default class UserController {
             try {
                 res.json(await this.userService.update(req.user, req.body));
             } catch (e) {
+                console.error(`UserController update target ${req.user} source ${req.body} ${e.message}`);
                 return next(e);
             }
         };
@@ -71,6 +74,7 @@ export default class UserController {
                 await this.userService.delete(req.user);
                 res.status(204).end();
             } catch (e) {
+                console.error(`UserController delete user ${req.user} ${e.message}`);
                 return next(e);
             }
         };
