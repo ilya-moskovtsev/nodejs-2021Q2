@@ -1,5 +1,6 @@
 import express from 'express';
 
+import { authRoutes } from './routes/auth';
 import { userRoutes } from './routes/user';
 import { groupRoutes } from './routes/group';
 import db from './loaders/database';
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.json());
+app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/groups', groupRoutes);
 
