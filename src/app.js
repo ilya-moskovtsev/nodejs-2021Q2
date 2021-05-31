@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import { authRoutes } from './routes/auth';
 import { userRoutes } from './routes/user';
@@ -22,6 +23,7 @@ process.on('unhandledRejection', async (reason, promise) => {
 });
 
 app.disable('x-powered-by');
+app.use(cors());
 app.use((req, res, next) => {
     logger.info(req);
     next();
