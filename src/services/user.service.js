@@ -3,7 +3,7 @@ import logger from '../loaders/logger';
 
 const User = db.user;
 
-export default class UserService {
+class UserService {
     constructor() {
         this.exclude = ['password', 'isDeleted'];
     }
@@ -122,3 +122,5 @@ export default class UserService {
         }
     }
 }
+
+export default new UserService();
