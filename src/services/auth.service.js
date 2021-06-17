@@ -1,3 +1,4 @@
+import { SECRET } from 'babel-dotenv';
 import jwt from 'jsonwebtoken';
 import userService from '../loaders/user.service';
 import logger from '../loaders/logger';
@@ -13,8 +14,7 @@ export default class AuthService {
             const user = await this.userService.findByLogin(username);
             let token;
             if (user && user.password === password) {
-                // TODO: move secret and expiresIn to dotenv
-                token = jwt.sign({ sub: user.id }, 'secret', { expiresIn: 60 });
+                token = jwt.sign({ sub: user.id }, SECRET, { expiresIn: 60 });
                 logger.info('Logged in user successfully');
             }
             return token;
@@ -27,8 +27,7 @@ export default class AuthService {
     checkToken(token) {
         logger.info('Checking token');
         try {
-            // TODO: move secret to dotenv
-            return jwt.verify(token, 'secret');
+            return jwt.verify(token, SECRET);
         } catch (e) {
             logger.error('Error checking token', e);
             throw e;

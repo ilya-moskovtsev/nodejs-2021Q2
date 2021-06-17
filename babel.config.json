@@ -8,6 +8,12 @@
       {
         "regenerator": true
       }
+    ],
+    [
+      "babel-plugin-dotenv",
+      {
+        "replacedModuleName": "babel-dotenv"
+      }
     ]
   ]
 }
