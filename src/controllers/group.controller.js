@@ -1,9 +1,9 @@
-import GroupService from '../services/group.service';
+import groupService from '../services/group.service';
 import logger from '../loaders/logger';
 
 export default class GroupController {
     constructor() {
-        this.groupService = new GroupService();
+        this.groupService = groupService;
     }
 
     findById() {

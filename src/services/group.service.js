@@ -4,7 +4,10 @@ import logger from '../loaders/logger';
 const Group = db.group;
 const User = db.user;
 
-export default class GroupService {
+class GroupService {
+    constructor() {
+    }
+
     async findAll() {
         logger.info('Finding all groups');
         try {
@@ -85,3 +88,5 @@ export default class GroupService {
         }
     }
 }
+
+export default new GroupService();
