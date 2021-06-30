@@ -1,8 +1,9 @@
+import { DB_URI } from 'babel-dotenv';
 import { Sequelize } from 'sequelize';
 
 import logger from '../loaders/logger';
 
-const sequelize = new Sequelize('postgres://postgres:password@localhost:5432/postgres');
+const sequelize = new Sequelize(DB_URI, { dialect: 'postgres' });
 
 const db = {};
 

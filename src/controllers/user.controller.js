@@ -1,4 +1,4 @@
-import userService from '../loaders/user.service';
+import userService from '../services/user.service';
 import UserValidator from '../validators/user.validator';
 import logger from '../loaders/logger';
 
@@ -52,7 +52,7 @@ export default class UserController {
                 const id = await this.userService.create(req.body);
                 res.json({ id });
             } catch (e) {
-                logger.error(`UserController create user ${req.body} ${e.message}`);
+                logger.error(`UserController create user ${JSON.stringify(req.body)} ${e.message}`);
                 return next(e);
             }
         };
@@ -63,7 +63,7 @@ export default class UserController {
             try {
                 res.json(await this.userService.update(req.user, req.body));
             } catch (e) {
-                logger.error(`UserController update target ${req.user} source ${req.body} ${e.message}`);
+                logger.error(`UserController update target ${JSON.stringify(req.user)} source ${JSON.stringify(req.body)} ${e.message}`);
                 return next(e);
             }
         };
@@ -75,7 +75,7 @@ export default class UserController {
                 await this.userService.delete(req.user);
                 res.status(204).end();
             } catch (e) {
-                logger.error(`UserController delete user ${req.user} ${e.message}`);
+                logger.error(`UserController delete user ${JSON.stringify(req.user)} ${e.message}`);
                 return next(e);
             }
         };

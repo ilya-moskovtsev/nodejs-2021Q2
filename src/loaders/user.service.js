@@ -1,5 +1,5 @@
 import UserService from '../services/user.service';
 
-const userService = new UserService();
+const userService = UserService;
 
 export default userService;
