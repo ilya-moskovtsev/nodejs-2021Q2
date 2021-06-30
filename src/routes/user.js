@@ -1,9 +1,11 @@
 import express from 'express';
+import AuthController from '../controllers/auth.controller';
 import UserController from '../controllers/user.controller';
 import UserValidator from '../validators/user.validator';
 import rateLimit from 'express-rate-limit';
 
 const router = express.Router();
+const authController = new AuthController();
 const userController = new UserController();
 const userValidator = new UserValidator();
 const createUserLimiter = rateLimit({
@@ -12,16 +14,16 @@ const createUserLimiter = rateLimit({
     message: 'Too many users created from this IP, please try again after an hour'
 });
 
-router.param('user_id', userController.findById());
+router.param('user_id', authController.checkToken(), userController.findById());
 
-router.get('/:user_id', userController.getUser());
+router.get('/:user_id', authController.checkToken(), userController.getUser());
 
-router.get('/', userValidator.validateQuery(), userController.getUsers());
+router.get('/', authController.checkToken(), userValidator.validateQuery(), userController.getUsers());
 
-router.post('/', createUserLimiter, userValidator.validateUser(), userValidator.validateCreate(), userController.create());
+router.post('/', authController.checkToken(), createUserLimiter, userValidator.validateUser(), userValidator.validateCreate(), userController.create());
 
-router.put('/:user_id', userValidator.validateUser(), userValidator.validateUpdate(), userController.update());
+router.put('/:user_id', authController.checkToken(), userValidator.validateUser(), userValidator.validateUpdate(), userController.update());
 
-router.delete('/:user_id', userController.delete());
+router.delete('/:user_id', authController.checkToken(), userController.delete());
 
 exports.userRoutes = router;

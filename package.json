@@ -33,8 +33,10 @@
   },
   "dependencies": {
     "ajv": "^7.2.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.6.2",

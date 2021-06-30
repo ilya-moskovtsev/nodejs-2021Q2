@@ -38,6 +38,20 @@ export default class UserService {
         }
     }
 
+    async findByLogin(login) {
+        logger.info(`Finding user by login ${login}`);
+        try {
+            const user = await User.findOne({
+                where: { login, isDeleted: false }
+            });
+            logger.info(`Found user by login ${login} successfully`);
+            return user;
+        } catch (e) {
+            logger.error(`Error finding user by login ${login}`, e);
+            throw e;
+        }
+    }
+
     async create(user) {
         logger.info('Creating user');
         try {
