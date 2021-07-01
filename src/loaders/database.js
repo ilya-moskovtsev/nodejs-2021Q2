@@ -1,5 +1,7 @@
 import { Sequelize } from 'sequelize';
 
+import logger from '../loaders/logger';
+
 const sequelize = new Sequelize('postgres://postgres:password@localhost:5432/postgres');
 
 const db = {};
@@ -13,7 +15,7 @@ db.user.belongsToMany(db.group, { through: 'UserGroup' });
 db.group.belongsToMany(db.user, { through: 'UserGroup' });
 
 sequelize.authenticate()
-    .then(() => console.log('Connection has been established successfully.'))
-    .catch(error => console.error('Unable to connect to the database:', error));
+    .then(() => logger.info('Connection has been established successfully.'))
+    .catch(error => logger.error('Unable to connect to the database:', error));
 
 export default db;
